@@ -14,7 +14,7 @@ app.use(cors());
 
 app.use("/posts", postRoutes);
 
-const CONNECTION_URL = "mongodb+srv://singh-csm:GIUPM5681K@singh-csm.nmfw5jk.mongodb.net/fsocMemory";
+const CONNECTION_URL = "mongodb+srv://singh-csm:GIUPM5681K@singh-csm.nmfw5jk.mongodb.net/testfsocmemory";
 const PORT = process.env.PORT || 3001;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
