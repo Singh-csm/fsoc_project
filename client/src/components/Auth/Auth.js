@@ -35,7 +35,7 @@ const Auth = () => {
 
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
-        handleShowPassword(false)
+        setShowPassword(false)
     }
 
     
@@ -110,8 +110,6 @@ const Auth = () => {
               </form>
 
         </Paper>
- 
-
 
         </Container>
   )
