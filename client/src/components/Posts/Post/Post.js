@@ -19,7 +19,17 @@ const Post = ({ post, setCurrentId }) => {
     const dispatch = useDispatch();
 
     const userId = user?.result?.googleId || user?.result?._id;
+    const hasLikedPost = post.likes.find((like) => like === userId);
 
+    const handleLike = async () => {
+      dispatch(likePost(post._id));
+  
+      if (hasLikedPost) {
+        setLikes(post.likes.filter((id) => id !== userId));
+      } else {
+        setLikes([...post.likes, userId]);
+      }
+    };
 
 
     const Likes = () => {
@@ -33,7 +43,7 @@ const Post = ({ post, setCurrentId }) => {
     }
 
     return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
-  };
+   };
 
   const openPost = (e) => {
     //dispatch(getPost(post._id, history));
@@ -51,7 +61,7 @@ const Post = ({ post, setCurrentId }) => {
         className={classes.cardAction}
         onClick={openPost}
       >
-     <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
+     <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png' } title={post.title} />
 
         <div className={classes.overlay} >
           <Typography variant="h6">{post.name}</Typography>
@@ -59,7 +69,7 @@ const Post = ({ post, setCurrentId }) => {
         </div>
         {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
         <div className={classes.overlay2} >
-            <Button style={{color:'white'}} size='small' onClick={() => setCurrentId(post._id)} >
+            <Button style={{color:'white'}} size='small' onClick={(e) => setCurrentId(post._id)} >
               <MoreHorizIcon fontSize='medium' />
             </Button>
         </div>
@@ -69,12 +79,12 @@ const Post = ({ post, setCurrentId }) => {
         </div>
             <Typography className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
         <CardContent>
-            <Typography variant="body2" color='textSecondary' component="p" >{post.message}</Typography>
+            <Typography variant="body2" color='textSecondary' component="p" >{post.message.split(' ').splice(0, 20).join(' ')}...</Typography>
         </CardContent>
         </ButtonBase>
         <CardActions className={classes.cardActions}>
 
-          <Button size='small' color='primary' disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
+          <Button size='small' color='primary' disabled={!user?.result} onClick={handleLike}>
               <Likes />
           </Button>
           {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (

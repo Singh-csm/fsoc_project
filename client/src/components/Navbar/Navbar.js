@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {  AppBar, Avatar, Toolbar, Button, Typography } from "@material-ui/core";
+import {  AppBar, Avatar, Toolbar, Button, Typography, Paper} from "@material-ui/core";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
       <AppBar className={classes.appBar} position="static" color="inherit">
         <div className={classes.brandContainer}>
-            <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">Memories</Typography>
+            <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center"> <Paper className={classes.paper} elevation={17}>Memories</Paper> </Typography>
             <img className={classes.image} src={memories} alt = "memories" height="60" />
         </div>
 
