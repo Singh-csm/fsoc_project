@@ -5,8 +5,13 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+     "test": "npm start",
     "start": "node index.js"
   },
+        "engines" :{ 
+        "npm": ">=8.0.0 <9.6.3", 
+        "node": ">=16.0.0 <17.0.0" 
+      },
   "keywords": [],
   "author": "Chandrashekhar Singh Mourya",
   "license": "ISC",
