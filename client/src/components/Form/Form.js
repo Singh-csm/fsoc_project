@@ -65,8 +65,8 @@ const Form = ({ currentId, setCurrentId}) => {
       <Paper className={classes.paper}>
       <form autoComplete="off" noValidate  className={`${classes.root} ${classes.form}`}  onSubmit={handleSubmit}>
           <Typography variant='h6'>{ currentId ? "Editing" : "Creating"} a Memory</Typography>
-          <TextField name='title' variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e)=>setPostData({...postData, title: e.target.value})}></TextField>
-          <TextField name='message' variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e)=>setPostData({...postData, message: e.target.value})}></TextField>
+          <TextField name='title' variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e)=>setPostData({...postData, title: e.target.value})} />
+          <TextField name='message' variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e)=>setPostData({...postData, message: e.target.value})} />
           <div style={{ padding: '5px 0', width: '94%' }}>
           <ChipInput
             name="tags"

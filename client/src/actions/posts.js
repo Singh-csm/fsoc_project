@@ -1,4 +1,4 @@
-import { CREATE, DELETE, UPDATE, FETCH_ALL, START_LOADING, END_LOADING, COMMENT, FETCH_POST, FETCH_BY_SEARCH } from "../constants/actionTypes";
+import { CREATE, DELETE, UPDATE, FETCH_ALL, START_LOADING, END_LOADING, COMMENT, FETCH_POST, LIKE, FETCH_BY_CREATOR, FETCH_BY_SEARCH } from "../constants/actionTypes";
 import * as api from "../api/index.js";
 
 
@@ -15,11 +15,13 @@ export const getPost = (id) => async (dispatch) => {
 };
 
 
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (page) => async (dispatch) => {
   try {
-    const { data } = await api.fetchPosts();
+    dispatch({ type: START_LOADING });
+    const { data: { data, currentPage, numberOfPages } } = await api.fetchPosts(page);
 
-    dispatch({ type: FETCH_ALL, payload: data });
+    dispatch({ type: FETCH_ALL, payload: { data, currentPage, numberOfPages } });
+    dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error);
   }
@@ -37,12 +39,28 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   }
 };
 
-export const createPost = (post) => async (dispatch) => {
+
+export const getPostsByCreator = (name) => async (dispatch) => {
   try {
+    dispatch({ type: START_LOADING });
+    const { data: { data } } = await api.fetchPostsByCreator(name);
+
+    dispatch({ type: FETCH_BY_CREATOR, payload: { data } });
+    dispatch({ type: END_LOADING });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+
+export const createPost = (post, history) => async (dispatch) => {
+  try {
+    dispatch({ type: START_LOADING });
     const { data } = await api.createPost(post);
 
     dispatch({ type: CREATE, payload: data });
-   
+    history.push(`/posts/${data._id}`);
   } catch (error) {
     console.log(error);
   }
@@ -70,10 +88,11 @@ export const deletePost = (id) => async (dispatch) => {
 }
 
 export const likePost = (id) => async (dispatch) => {
+  const user = JSON.parse(localStorage.getItem('profile'));
     try {
-        const { data } = await api.likePost(id);
+        const { data } = await api.likePost(id , user?.token);
 
-        dispatch({ type: UPDATE, payload: data});
+        dispatch({ type: LIKE, payload: data});
     } catch (error) {
         console.log(error)
     }

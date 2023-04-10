@@ -15,8 +15,8 @@ function useQuery() {
 }
 
 const Home = () => {
-  const query = useQuery();
-  const searchQuery = query.get('searchQuery');
+    const query = useQuery();
+    const searchQuery = query.get('searchQuery');
     const page = query.get('page') || 1;
     const classes = useStyles();
 

@@ -7,6 +7,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
 import Input from "./Input";
 import Icon from "./Icon";
+import { AUTH } from '../../constants/actionTypes';
 import { signin, signup } from "../../actions/auth";
 
 const initialState = { firstName:"" , lastName: "" , email: "",  password: "", confirmPassword: "" };
@@ -34,6 +35,7 @@ const Auth = () => {
     }
 
     const switchMode = () => {
+        setFormData(initialState);
         setIsSignup((prevIsSignup) => !prevIsSignup);
         setShowPassword(false)
     }
@@ -44,7 +46,7 @@ const Auth = () => {
         const result = res?.profileObj;
         const token = res?.tokenId; 
         try {
-            dispatch({ type: "AUTH", data: { result, token}});
+            dispatch({ type: AUTH, data: { result, token}});
             history.push("/")
         } catch (error) {
             console.log(error)

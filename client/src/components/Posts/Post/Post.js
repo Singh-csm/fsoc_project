@@ -9,7 +9,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';  
 
-import { deletePost, likePost } from "../../../actions/posts";
+import { deletePost, likePost, getPost } from "../../../actions/posts";
 
 const Post = ({ post, setCurrentId }) => {
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -46,7 +46,7 @@ const Post = ({ post, setCurrentId }) => {
    };
 
   const openPost = (e) => {
-    //dispatch(getPost(post._id, history));
+    dispatch(getPost(post._id, history));
 
     history.push(`/posts/${post._id}`);
   };
@@ -54,7 +54,7 @@ const Post = ({ post, setCurrentId }) => {
 
   return (
    
-     <Card className={classes.card} rasied elevation={6}>
+     <Card className={classes.card} rasied="true" elevation={6}>
            <ButtonBase
         component="span"
         name="test"
@@ -89,8 +89,8 @@ const Post = ({ post, setCurrentId }) => {
           </Button>
           {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
           <Button size='small' color='primary' onClick={() => dispatch(deletePost(post._id))} >
-              <DeleteIcon fontSize="small" />
-              Delete 
+              <DeleteIcon fontSize="small" /> 
+              &nbsp; Delete 
           </Button>
 
           )}

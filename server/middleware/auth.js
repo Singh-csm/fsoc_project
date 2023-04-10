@@ -5,7 +5,9 @@ const auth = async (req, res, next) => {
         
         const token = req.headers.authorization.split(" ")[1];
         const isAuth = token.length < 500;
+
         let decodedData;
+        
         if(token && isAuth) {
             decodedData = jwt.verify(token , "fsocMemory");
             req.userId = decodedData?.id;
