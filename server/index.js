@@ -18,7 +18,7 @@ app.use("/user", userRoutes);
 
 const PORT = process.env.PORT || 3001
 
-mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.CONNECTION_URL || "mongodb+srv://singh-csm:GIUPM5681K@singh-csm.nmfw5jk.mongodb.net/testfsocmemory", { useNewUrlParser: true, useUnifiedTopology: true})
     .then(()=> app.listen( PORT, ()=> console.log(`Server listening on ${PORT} and Database Connected Successfully - fsocMemory`)))
     .catch((error)=> console.log(error.message));
 
