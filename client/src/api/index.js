@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:3001"  })
+const API = axios.create({ baseURL: "https://suave-meadow-fireplace.glitch.me/" })
+
+//https://suave-meadow-fireplace.glitch.me/ -- Backend deployed Link
+//http://localhost:3001 -- Localhost Backend
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
