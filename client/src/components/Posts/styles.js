@@ -56,6 +56,9 @@ export default makeStyles((theme) => ({
     image: {
       marginLeft: '5px',
     },
+    paper: {
+      padding: theme.spacing(2),
+    },
     toolbar: {
       display: 'flex',
       justifyContent: 'flex-end',
