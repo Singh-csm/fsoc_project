@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { Typography, CircularProgress, Grid, Divider } from '@material-ui/core';
+import { Typography, CircularProgress, Grid, Divider , Paper} from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Post from '../Posts/Post/Post';
+
 import { getPostsByCreator, getPostsBySearch } from '../../actions/posts';
 
 const CreatorOrTag = () => {
@@ -21,7 +22,7 @@ const CreatorOrTag = () => {
     }
   }, []);
 
-  if (!posts.length && !isLoading) return 'No posts';
+  if (!posts.length && !isLoading) return <Paper>'No posts'</Paper>;
 
   return (
     <div>
