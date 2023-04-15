@@ -68,7 +68,7 @@ export const createPost = (post, history) => async (dispatch) => {
 
 export const updatePost = (id, post) => async (dispatch) => {
   try {
-    console.log(id)
+    // console.log(id)
     const { data } = await api.updatePost(id, post);
 
     dispatch({ type: UPDATE, payload: data });
