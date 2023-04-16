@@ -1,6 +1,7 @@
 import React from "react";
-import { Container } from "@material-ui/core";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { Container } from '@mui/material';
+
+import { BrowserRouter, Router, Route, Navigate } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
@@ -17,14 +18,14 @@ const App = () => {
       <Container maxWidth="xl">
         <Navbar />
 
-          <Switch>
-            <Route exact path="/"  component={() => <Redirect to="/posts" />} />
+          <Router>
+          <Route path="/" element={<Navigate to="/posts" replace />} />
             <Route exact path="/posts"  component={Home} />
             <Route path="/posts/search" exact component={Home} />
             <Route path="/posts/:id" exact component={PostDetails} />
             <Route path={['/creators/:name', '/tags/:name']} component={CreatorOrTag} />
-            <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)} />
-          </Switch>
+            <Route path="/auth" element={!user ? <Auth /> : <Navigate to="/posts" replace />} />
+          </Router>
 
         
       </Container>

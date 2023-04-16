@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Container, Grow, Grid, Paper, AppBar, TextField, Button} from "@material-ui/core";
-import ChipInput from 'material-ui-chip-input';
+import { Container, Grow, Grid, Paper, AppBar, TextField, Button } from '@mui/material';
+//import ChipInput from 'material-ui-chip-input';
 import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { getPostsBySearch } from '../../actions/posts';
 import useStyles from "./styles";
@@ -22,17 +22,17 @@ const Home = () => {
 
     const [search, setSearch] = useState('');
     const [tags, setTags] = useState([]);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [currentId, setCurrentId] = useState(0);
     const dispatch = useDispatch();
 
     const searchPost = () => {
       if (search.trim() || tags) {
-        dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
-        history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+        navigate(getPostsBySearch({ search, tags: tags.join(',') }));
+        navigate.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
       } else {
-        history.push('/');
+        navigate.push('/');
       }
     };
 
@@ -42,9 +42,9 @@ const Home = () => {
       }
     };
 
-    const handleAddChip = (tag) => setTags([...tags, tag]);
+    // const handleAddChip = (tag) => setTags([...tags, tag]);
 
-    const handleDeleteChip = (chipToDelete) => setTags(tags.filter((tag) => tag !== chipToDelete));
+    // const handleDeleteChip = (chipToDelete) => setTags(tags.filter((tag) => tag !== chipToDelete));
 
 
     return (
@@ -57,14 +57,14 @@ const Home = () => {
             <Grid item xs={12} sm={6} md={3}>
               <AppBar className={classes.appBarSearch} position="static" color="inherit">
                 <TextField onKeyDown={handleKeyPress} name="search" variant="outlined" label="Search Memories" fullWidth value={search} onChange={(e) => setSearch(e.target.value)} />
-                <ChipInput
+                {/* <ChipInput
                   style={{ margin: '10px 0' }}
                   value={tags}
                   onAdd={(chip) => handleAddChip(chip)}
                   onDelete={(chip) => handleDeleteChip(chip)}
                   label="Search Tags"
                   variant="outlined"
-                />
+                /> */}
                 <Button onClick={searchPost} className={classes.searchButton} variant="contained" color="primary">Search</Button>
               </AppBar>
               <Form currentId={currentId} setCurrentId={setCurrentId} />

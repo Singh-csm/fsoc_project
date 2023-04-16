@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
+import { TextField, Button, Typography, Paper } from '@mui/material';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useStyles from "./styles";
 import { createPost, updatePost } from '../../actions/posts';
-import ChipInput from 'material-ui-chip-input';
+// import ChipInput from 'material-ui-chip-input';
+
 
 
 const Form = ({ currentId, setCurrentId}) => {
@@ -14,7 +15,7 @@ const Form = ({ currentId, setCurrentId}) => {
   const post = useSelector((state) => (currentId ? state.posts.posts.find((p) => p._id === currentId) : null));
     const classes = useStyles();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("profile"));
 
     const clear = () => {
@@ -30,7 +31,7 @@ const Form = ({ currentId, setCurrentId}) => {
         e.preventDefault();
 
         if(currentId === 0){
-          dispatch(createPost({ ...postData, name: user?.result?.name}, history));
+          dispatch(createPost({ ...postData, name: user?.result?.name}, navigate));
           clear();
         }else{
           dispatch(updatePost(currentId, {...postData, name: user?.result?.name}));
@@ -50,13 +51,13 @@ const Form = ({ currentId, setCurrentId}) => {
       )
     }
 
-    const handleAddChip = (tag) => {
-      setPostData({ ...postData, tags: [...postData.tags, tag] });
-    };
+    // const handleAddChip = (tag) => {
+    //   setPostData({ ...postData, tags: [...postData.tags, tag] });
+    // };
   
-    const handleDeleteChip = (chipToDelete) => {
-      setPostData({ ...postData, tags: postData.tags.filter((tag) => tag !== chipToDelete) });
-    };
+    // const handleDeleteChip = (chipToDelete) => {
+    //   setPostData({ ...postData, tags: postData.tags.filter((tag) => tag !== chipToDelete) });
+    // };
   
 
 
@@ -67,7 +68,7 @@ const Form = ({ currentId, setCurrentId}) => {
           <Typography variant='h6'>{ currentId ? "Editing" : "Creating"} a Memory</Typography>
           <TextField name='title' variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e)=>setPostData({...postData, title: e.target.value})} />
           <TextField name='message' variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e)=>setPostData({...postData, message: e.target.value})} />
-          <div style={{ padding: '5px 0', width: '94%' }}>
+          {/* <div style={{ padding: '5px 0', width: '94%' }}>
           <ChipInput
             name="tags"
             variant="outlined"
@@ -77,7 +78,7 @@ const Form = ({ currentId, setCurrentId}) => {
             onAdd={(chip) => handleAddChip(chip)}
             onDelete={(chip) => handleDeleteChip(chip)}
           />
-        </div>
+        </div> */}
           <div className={classes.fileInput}><FileBase type="file"  multiple={false} onDone={({ base64 }) => setPostData({...postData, selectedFile: base64})} />  </div>
           <Button className={classes.buttonSubmit} variant="contained" color="primary" size='large' type="submit" fullWidth>Submit</Button>
           <Button  variant="contained" color="secondary" size='small' onClick={clear} fullWidth>Clear</Button>
