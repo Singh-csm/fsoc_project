@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import User from "../models/user.js";
 
 const auth = async (req, res, next) => {
     try {
@@ -9,14 +10,17 @@ const auth = async (req, res, next) => {
 
         let decodedData;
         
-        if(token ) {
+     
             decodedData = jwt.verify(token , "fsocMemory");
-            req.userId = decodedData.id;
-        }
+            
+            req.user = await User.findById(decodedData.id);
+           
+            
+        
 
         next();
     } catch (error) {
-        console.log(error)
+        console.log(error.message)
     }
 }
 

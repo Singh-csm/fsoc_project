@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from "mongoose";
 import PostMessage from "../models/postMessage.js";
+import cloudinary from "cloudinary";
 const router = express.Router();
 
 export const getPosts = async (req, res) => {
@@ -46,14 +47,29 @@ export const getPostsBySearch = async (req, res) => {
 }
 
 export const createPost = async (req, res) => {
-     const post = req.body;
- 
-     const newPostMessage = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
- 
+     
+     //const newPostMessage = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
+
      try {
-         await newPostMessage.save();
+
+       
+        const mycloud = await cloudinary.v2.uploader.upload(req.body.selectedFile,{
+          folder:"posts"
+      })
+      const newPostData ={
+        title : req.body.title,
+        name: req.user.name,
+        message: req.body.message,
+        tag : req.body.tag,
+        selectedFile:{
+            public_Id: mycloud.public_id,
+            url: mycloud.secure_url
+        },
+     }
  
-         res.status(201).json(newPostMessage);
+         const data = await PostMessage.create(newPostData)
+ 
+         res.status(201).json(data);
      } catch (error) {
          res.status(409).json({ message: error.message });
      }

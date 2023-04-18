@@ -5,9 +5,15 @@ import cors from "cors";
 import dotenv from "dotenv";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
+import cloudinary from "cloudinary";
 
 const app = express();
 dotenv.config()
+cloudinary.config({ 
+    cloud_name: "du7f2xnv0",
+    api_key: "795942125436498",
+    api_secret: "fi_l6bHfIGx_L-eKf_FeRAPsmFk"
+})
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
