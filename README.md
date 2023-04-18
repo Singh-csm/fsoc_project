@@ -8,7 +8,7 @@
 
 - User authentication and authorization using JWT tokens
 - Create, read, update, and delete memory posts
-- Upload images to memory posts
+- Upload images to memory posts cloudinary implemented
 - Tag memory posts with keywords
 - Search for memories by keyword
 - Responsive design for mobile and desktop devices
