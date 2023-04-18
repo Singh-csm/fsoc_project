@@ -7,6 +7,8 @@ import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
 import PostDetails from './components/PostDetails/PostDetails';
 import CreatorOrTag from './components/CreatorOrTag/CreatorOrTag';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -16,7 +18,7 @@ const App = () => {
     <BrowserRouter>
       <Container maxWidth="xl">
         <Navbar />
-
+      <ToastContainer/>
           <Switch>
             <Route exact path="/"  component={() => <Redirect to="/posts" />} />
             <Route exact path="/posts"  component={Home} />

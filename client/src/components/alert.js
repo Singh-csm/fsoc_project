@@ -1,11 +1,11 @@
 import { toast } from 'react-toastify';
-import '../../node_modules/react-toastify/dist/react-toastify.esm.mjs';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 const successToast =function (message) {
   toast.success(message, {
-    position: 'top-right',
+    position: 'top-center',
     autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -27,6 +27,8 @@ const errorToast =function (message) {
     });
   };
 
-export default  { successToast, errorToast};
+  export {
+    successToast,errorToast
+  }
 
   
