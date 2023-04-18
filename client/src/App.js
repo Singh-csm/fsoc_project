@@ -20,10 +20,10 @@ const App = () => {
           <Switch>
             <Route exact path="/"  component={() => <Redirect to="/posts" />} />
             <Route exact path="/posts"  component={Home} />
-            <Route path="/posts/search" exact component={Home} />
-            <Route path="/posts/:id" exact component={PostDetails} />
+            <Route path="/posts/search"  component={Home} />
+            <Route path="/posts/:id"  component={PostDetails} />
             <Route path={['/creators/:name', '/tags/:name']} component={CreatorOrTag} />
-            <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)} />
+            <Route path="/auth"  component={() => (!user ? <Auth /> : <Redirect to="/posts" />)} />
           </Switch>
 
         
