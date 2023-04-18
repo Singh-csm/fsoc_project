@@ -12,7 +12,7 @@ const auth = async (req, res, next) => {
         
      
             decodedData = jwt.verify(token , "fsocMemory");
-            
+            req.userId = decodedData.id;
             req.user = await User.findById(decodedData.id);
            
             

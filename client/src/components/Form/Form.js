@@ -95,7 +95,7 @@ const Form = ({ currentId, setCurrentId}) => {
           />
         </div>
           {/* <div className={classes.fileInput}><FileBase type="file"  multiple={false} onDone={({ base64 }) => setPostData({...postData, selectedFile: base64})} />  </div> */}
-          <div className={classes.fileInput}><Input type="file" accept="image/**" onChange={handleImageChange} 
+          <div className={classes.fileInput}><Input type="file"  accept="image/**" onChange={handleImageChange} 
 
            />  </div>
 

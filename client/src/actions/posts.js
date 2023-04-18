@@ -1,5 +1,6 @@
 import { CREATE, DELETE, UPDATE, FETCH_ALL, START_LOADING, END_LOADING, COMMENT, FETCH_POST, LIKE, FETCH_BY_CREATOR, FETCH_BY_SEARCH } from "../constants/actionTypes";
 import * as api from "../api/index.js";
+import {successToast,errorToast} from "../components/alert"
 
 
 export const getPost = (id) => async (dispatch) => {
@@ -58,11 +59,11 @@ export const createPost = (post, history) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.createPost(post);
-
+    successToast('Your post created Succesfully')
     dispatch({ type: CREATE, payload: data });
     history.push(`/posts/${data._id}`);
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    errorToast(err.response.data.message , "Error")
   }
 };
 
