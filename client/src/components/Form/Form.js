@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper, Input } from '@material-ui/core';
-import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import useStyles from "./styles";
@@ -34,10 +33,10 @@ const Form = ({ currentId, setCurrentId}) => {
         e.preventDefault();
 
         if(currentId === 0){
-          dispatch(createPost({ ...postData,selectedFile, name: user?.result?.name}, history));
+          dispatch(createPost({ ...postData, selectedFile, name: user?.result?.name}, history));
           clear();
         }else{
-          dispatch(updatePost(currentId, {...postData,selectedFile, name: user?.result?.name}));
+          dispatch(updatePost(currentId, {...postData, selectedFile, name: user?.result?.name}));
           clear();
         }
     }

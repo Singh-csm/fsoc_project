@@ -5,14 +5,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const successToast =function (message) {
   toast.success(message, {
-    position: 'bottom-right',
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
- });
+      position: 'bottom-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+   });
 };
 
 const errorToast =function (message) {
@@ -25,10 +25,9 @@ const errorToast =function (message) {
       draggable: true,
       progress: undefined,
     });
-  };
+};
 
-  export {
-    successToast,errorToast
-  }
+export {
+    successToast, errorToast
+}
 
-  
