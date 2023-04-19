@@ -14,6 +14,7 @@
 - Responsive design for mobile and desktop devices
 - Error handling and validation using React and Express
 - MongoDB Atlas database for data storage
+- Forgot Password Implemented
 
 ### Installation
 
