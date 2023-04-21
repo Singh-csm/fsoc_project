@@ -38,7 +38,7 @@ const Post = () => {
   }
 
   const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
-
+// details of post ....
   return (
     <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
       <div className={classes.card}>
