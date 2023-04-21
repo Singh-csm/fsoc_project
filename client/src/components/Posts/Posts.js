@@ -7,12 +7,16 @@ import useStyles from './styles';
 const Posts = ({ setCurrentId }) => {
   const { posts, isLoading } = useSelector((state) => state.posts);
   const classes = useStyles();
-
+  
+// if no posts show no post
+  
   if (!posts.length && !isLoading) return <Typography variant="h3" align='center'>  <Paper className={classes.paper}  elevation={17}> No Posts </Paper> </Typography>
    // console.log(posts)
 
   return (
-   
+    
+//    mapping posts
+    
     isLoading ? <CircularProgress /> : (
       <Grid className={classes.container} container alignItems="stretch" spacing={3} >
             {
