@@ -23,7 +23,9 @@ const CreatorOrTag = () => {
   }, []);
 
   if (!posts.length && !isLoading) return <Paper>'No posts'</Paper>;
-
+  
+// search implementation using tag and creator
+  
   return (
     <div>
       <Typography variant="h2">{name}</Typography>
