@@ -31,7 +31,8 @@ const Post = ({ post, setCurrentId }) => {
       }
     };
 
-
+// If already liked remove like 
+    
     const Likes = () => {
     if (likes.length > 0) {
       return likes.find((like) => like === userId)
@@ -51,7 +52,7 @@ const Post = ({ post, setCurrentId }) => {
     history.push(`/posts/${post._id}`);
   };
 
-
+//to show posts in page 
   return (
    
      <Card className={classes.card} rasied="true" elevation={6}>
