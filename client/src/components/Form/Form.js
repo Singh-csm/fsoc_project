@@ -58,7 +58,7 @@ const Form = ({ currentId, setCurrentId}) => {
       setPostData({ ...postData, tags: postData.tags.filter((tag) => tag !== chipToDelete) });
     };
   
-
+// form for creating memory
 
   return (
     
