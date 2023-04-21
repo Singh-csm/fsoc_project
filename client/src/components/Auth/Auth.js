@@ -40,7 +40,8 @@ const Auth = () => {
 
     
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
-
+    
+// signup & signin page
   return (
         <Container component="main" maxWidth="xs">
         <Paper className={classes.paper} elevation={17}>
