@@ -21,7 +21,7 @@ const CommentSection = ({ post }) => {
 
     commentsRef.current.scrollIntoView({ behavior: 'smooth' });
   };
-
+// Comment Feature implemented
   return (
     <div>
       <div className={classes.commentsOuterContainer}>
