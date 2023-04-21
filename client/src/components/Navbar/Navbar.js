@@ -44,7 +44,9 @@ const Navbar = () => {
         }
         setUser(JSON.parse(localStorage.getItem("profile")));
     },[location])
-   
+    
+//    navbar logo and sigin and logout button
+    
   return (
       <AppBar className={classes.appBar} position="static" color="inherit">
       <Link to="/" className={classes.brandContainer}>
