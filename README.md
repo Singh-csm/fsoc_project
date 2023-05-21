@@ -4,8 +4,12 @@
 
 - Memory App is a full-stack web application built using the MERN stack, which stands for MongoDB, Express, React, and Node.js. This app allows users to store and organize their memories by creating, updating, and deleting memory posts, adding images and tags, and searching for memories and comments.
 ---
+
+
 https://github.com/Singh-csm/fsoc_project/assets/118621709/75c34fec-6b4e-4daa-9145-bcac23e44f64
----
+
+
+
 ---
 ### Features
 
